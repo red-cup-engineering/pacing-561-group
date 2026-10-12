@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pacing-561-group",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-08-18",
+  "workers_dev": true,
+  "assets": {
+    "directory": "public",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "routes": [
+    { "pattern": "pacing.561.group", "custom_domain": true }
+  ]
+}

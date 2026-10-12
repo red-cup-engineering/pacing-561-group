@@ -1,0 +1,314 @@
+/* pacing.561.group — large type, low motion, one-column-first, dark mode via prefers-color-scheme */
+
+:root {
+  --bg: #faf9f6;
+  --bg-raised: #ffffff;
+  --text: #1a1a1a;
+  --text-dim: #4b4b4b;
+  --border: #cfcac0;
+  --accent: #2f5d50;
+  --accent-text: #ffffff;
+  --danger: #7a2e2e;
+  --danger-bg: #f6e9e9;
+  --warn-bg: #fff6df;
+  --warn-border: #c9a227;
+  --focus: #1758c9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --bg-raised: #1e2126;
+    --text: #f1efe9;
+    --text-dim: #b8b3a8;
+    --border: #3a3e46;
+    --accent: #6fbfa6;
+    --accent-text: #0d1411;
+    --danger: #e08a8a;
+    --danger-bg: #2f1f1f;
+    --warn-bg: #2b2712;
+    --warn-border: #c9a227;
+    --focus: #7fb0ff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 112.5%; /* ~18px base */
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--focus);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--accent-text);
+  padding: 0.75rem 1rem;
+  z-index: 10;
+}
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+header.site-header {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+header.site-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.6rem;
+}
+header.site-header p {
+  margin: 0;
+  color: var(--text-dim);
+  max-width: 60ch;
+}
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+section {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+section > h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.privacy-banner {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin: 1rem;
+  font-size: 1.05rem;
+}
+.privacy-banner strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+form.entry-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.field .hint {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+input[type="date"],
+input[type="number"],
+input[type="text"],
+select,
+textarea {
+  font: inherit;
+  font-size: 1.1rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+
+textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  padding: 0.75rem 1rem 1rem;
+}
+fieldset legend {
+  font-weight: 600;
+  padding: 0 0.35rem;
+}
+.radio-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.radio-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+}
+input[type="radio"] {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+button {
+  font: inherit;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-text);
+  cursor: pointer;
+}
+button.secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+button.danger {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--danger);
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.button-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.status-line {
+  min-height: 1.5rem;
+  font-weight: 600;
+}
+.status-line[data-kind="error"] {
+  color: var(--danger);
+}
+.status-line[data-kind="ok"] {
+  color: var(--accent);
+}
+
+.today-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 40rem) {
+  .today-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.metric-card {
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.9rem 1rem;
+}
+.metric-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.metric-card .value {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.metric-card .evidence {
+  margin-top: 0.4rem;
+  font-size: 0.92rem;
+  color: var(--text-dim);
+}
+
+.flag {
+  border-left: 4px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+.flag .message {
+  font-weight: 600;
+}
+.flag .evidence {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  margin-top: 0.35rem;
+}
+
+.explainer {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  border-top: 1px dashed var(--border);
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+table.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 40rem;
+}
+table.history-table th,
+table.history-table td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.history-table td.notes-cell {
+  white-space: normal;
+  min-width: 12rem;
+}
+
+footer.site-footer {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+[hidden] {
+  display: none !important;
+}

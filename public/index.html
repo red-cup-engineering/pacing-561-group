@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pacing — 561 Group</title>
+<meta name="description" content="A local-first pacing app for infection-associated chronic illness. Every number is labeled with what it does and does not establish. Your data never leaves this device.">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <h1>Pacing</h1>
+  <p>Track resting heart rate, HRV, sleep, and exertion against your own baseline — for infection-associated chronic illness (ME/CFS, long COVID, and related post-exertional malaise conditions).</p>
+</header>
+
+<div class="privacy-banner" role="note">
+  <strong>Your data never leaves this device.</strong>
+  Everything you enter is stored only in this browser (localStorage). Nothing
+  is sent to a server, logged, or analyzed anywhere else. Closing the tab
+  does not delete it; clearing your browser's site data does. Export a copy
+  any time you want a backup or a file to hand to a clinician.
+</div>
+
+<main id="main">
+
+  <section id="entry" aria-labelledby="entry-heading">
+    <h2 id="entry-heading">Today's entry</h2>
+    <form class="entry-form" id="entry-form" novalidate>
+
+      <div class="field">
+        <label for="day">Date</label>
+        <input type="date" id="day" name="day" required>
+      </div>
+
+      <div class="field">
+        <label for="restingHr">Resting heart rate (bpm)</label>
+        <input type="number" id="restingHr" name="restingHr" min="20" max="220" step="1" inputmode="numeric" placeholder="e.g. 58">
+      </div>
+
+      <fieldset>
+        <legend>Heart rate variability (HRV)</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="hrvMode" value="rmssd" checked> I have an RMSSD number (ms)</label>
+          <label><input type="radio" name="hrvMode" value="rr"> I have raw RR intervals to paste</label>
+        </div>
+        <div class="field" id="hrv-rmssd-field">
+          <label for="hrvValue">RMSSD (ms)</label>
+          <input type="number" id="hrvValue" name="hrvValue" min="0" step="0.1" inputmode="decimal" placeholder="e.g. 42.3">
+        </div>
+        <div class="field" id="hrv-rr-field" hidden>
+          <label for="rrText">RR intervals (ms), separated by spaces, commas, or newlines</label>
+          <textarea id="rrText" name="rrText" placeholder="e.g. 812 805 798 820 ..."></textarea>
+          <p class="hint">RMSSD is computed from these locally, in your browser, using the same published math the paid agent API runs.</p>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="sleepHours">Sleep last night (hours)</label>
+        <input type="number" id="sleepHours" name="sleepHours" min="0" max="24" step="0.1" inputmode="decimal" placeholder="e.g. 7.5">
+      </div>
+
+      <div class="field">
+        <label for="activityLevel">Prior-day activity level</label>
+        <select id="activityLevel" name="activityLevel">
+          <option value="">Not recorded</option>
+        </select>
+        <p class="hint">How exerted was the day before this reading — physically, cognitively, or emotionally?</p>
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="Anything else worth remembering about this day"></textarea>
+      </div>
+
+      <div class="button-row">
+        <button type="submit">Save today's entry</button>
+      </div>
+      <p class="status-line" id="entry-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section id="today" aria-labelledby="today-heading">
+    <h2 id="today-heading">Today, against your own baseline</h2>
+    <p id="today-empty" class="hint">Add at least a few days of entries to see deviation scores here.</p>
+    <div class="today-grid" id="today-grid" hidden></div>
+    <div id="risk-flags"></div>
+    <p class="explainer" id="risk-explainer" hidden></p>
+  </section>
+
+  <section id="history" aria-labelledby="history-heading">
+    <h2 id="history-heading">History</h2>
+    <p class="hint" id="history-empty">No entries yet.</p>
+    <div class="table-wrap">
+      <table class="history-table" id="history-table" hidden>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Resting HR</th>
+            <th scope="col">HRV (RMSSD)</th>
+            <th scope="col">Sleep</th>
+            <th scope="col">Activity</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody id="history-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="data" aria-labelledby="data-heading">
+    <h2 id="data-heading">Your data</h2>
+    <p class="hint">Export a JSON copy any time. The exported file's <code>observations</code> array is the same record shape the paid pacing agent API and a clinician's tools expect, so you can hand it anywhere without re-entering anything.</p>
+    <div class="button-row">
+      <button type="button" class="secondary" id="export-button">Export JSON</button>
+      <label class="secondary" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--border);border-radius:0.4rem;padding:0.7rem 1.1rem;cursor:pointer;">
+        Import JSON
+        <input type="file" id="import-input" accept="application/json" style="display:none;">
+      </label>
+      <button type="button" class="danger" id="clear-button">Clear all data</button>
+    </div>
+    <p class="status-line" id="data-status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading">What this app is, and is not</h2>
+    <p>Every number here describes how today compares to <strong>your own recent history</strong> — never a population norm, and never a diagnosis. Nothing this app shows predicts, confirms, or diagnoses post-exertional malaise; it flags conservative deviations from your own baseline and tells you, in plain language, what evidence stands behind each flag.</p>
+    <p>The math is <a href="https://registry.561.group/-/web/detail/@red-cup-engineering/pacing-intelligence-services-section">published and open</a> — you can read exactly how every number is computed and what its evidence status is, unlike the closed scoring formulas most pacing apps ship.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>pacing.561.group — no accounts, no analytics, no server-side storage.</p>
+</footer>
+
+<script type="module" src="/js/app.mjs"></script>
+</body>
+</html>
