@@ -27,5 +27,9 @@
   },
   "engines": {
     "node": ">=24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/pacing-561-group.git"
   }
 }
