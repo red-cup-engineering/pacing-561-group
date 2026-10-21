@@ -1,5 +1,12 @@
 # pacing-app (pacing.561.group)
 
+<!-- 561-group-standards:badges:start -->
+[![Red Cup Engineering](https://img.shields.io/badge/561%20Group-Red%20Cup%20Engineering-c0392b)](https://github.com/red-cup-engineering)
+[![License: MIT](https://img.shields.io/badge/license-MIT-c0392b)](LICENSE)
+[![Indigenous data: CARE](https://img.shields.io/badge/Indigenous%20data-CARE-4b6f44)](https://github.com/red-cup-engineering/.github/blob/main/GOVERNANCE.md)
+[![Tips welcome](https://img.shields.io/badge/tips-welcome-d4a017)](https://github.com/561-group/.github/blob/main/TIPS.md)
+<!-- 561-group-standards:badges:end -->
+
 The practitioner-facing, local-first pacing app for infection-associated chronic illness (ME/CFS, long COVID, and related post-exertional malaise conditions).
 No accounts, no analytics, no server-side storage: every biometric observation a person enters stays in their own browser (`localStorage`) and never reaches this Worker, or any server, at all.
 A person logs resting heart rate, HRV, sleep, and prior-day activity level; sees a rolling personal baseline, deviation scores, the Workwell resting-heart-rate heuristic, and conservative PEM risk flags, each carrying the same evidence label the compute layer returns, verbatim; and can export or import their whole history as JSON in the `nutrition-biometric-observation-v1` record shape, so the identical file can be handed to a clinician or to the paid agent API without re-entering anything.
