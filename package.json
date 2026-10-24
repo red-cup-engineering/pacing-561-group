@@ -2,7 +2,7 @@
   "name": "@red-cup-engineering/pacing-561-group",
   "version": "0.1.0",
   "type": "module",
-  "description": "pacing.561.group -- the practitioner-facing, local-first pacing app for infection-associated chronic illness (ME/CFS, long COVID, related post-exertional malaise conditions). No accounts, no analytics, no server-side storage: every biometric observation stays in the browser. Runs the same @red-cup-engineering/pacing-intelligence-engineering-services-section math the paid agent gateway sells, vendored verbatim into the browser bundle.",
+  "description": "pacing.561.group -- the practitioner-facing, local-first pacing app for infection-associated chronic illness (ME/CFS, long COVID, related post-exertional malaise conditions). No accounts, no analytics, no server-side storage: every biometric observation stays in the browser. Runs the same @red-cup-engineering/pacing-intelligence-services-section math the paid agent gateway sells, vendored verbatim into the browser bundle.",
   "keywords": [
     "pacing",
     "biometric",
@@ -20,7 +20,7 @@
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
-    "@red-cup-engineering/pacing-intelligence-engineering-services-section": "workspace:*"
+    "@red-cup-engineering/pacing-intelligence-services-section": "workspace:*"
   },
   "devDependencies": {
     "wrangler": "4.123.0"
