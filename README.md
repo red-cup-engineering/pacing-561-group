@@ -14,7 +14,7 @@ A person logs resting heart rate, HRV, sleep, and prior-day activity level; sees
 ## Five-custody thread
 
 - **Science**: `../../../../../../../../science-services-section/services/natural-science-services-section/services/biological-science-services-section/services/medical-science-services-section/services/myalgic-encephalomyelitis-services-section/content/text/documents/articles/notes/2026/09/02/2026-09-02-note-on-biometric-guided-pacing-evidence.md` -- the cited evidence dossier every number this app shows traces back to.
-- **Engineering**: `../../../../../../../../engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/personal-computer-systems-services-section/services/personal-health-computer-systems-engineering-services-section/services/pacing-intelligence-services-section` -- `@red-cup-engineering/pacing-intelligence-services-section` (pinned `0.1.1`), the pure, no-I/O math this app vendors verbatim into the browser bundle (`npm run build`, never a hand copy).
+- **Engineering**: `../../../../../../../../engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/personal-computer-systems-services-section/services/personal-health-computer-systems-engineering-services-section/services/pacing-intelligence-services-section` -- `@red-cup-engineering/pacing-intelligence-engineering-services-section` (pinned `0.1.1`), the pure, no-I/O math this app vendors verbatim into the browser bundle (`npm run build`, never a hand copy).
 - **Operations**: `wrangler deploy` from this directory (after `npm run build`, which the `deploy` script already runs first).
   There is no CI for this app yet -- deploys are run by hand, the same as the sibling the pacing-intelligence offers of market.
   561.group.
@@ -43,7 +43,7 @@ This is the same claim the app's own privacy banner makes to the person using it
 - `public/js/app.mjs` -- the browser glue: wires `view-model.mjs` and the vendored compute module to the DOM and to `localStorage`.
   This app's only I/O boundary; exercised by hand and `npm run dev`, not `node --test`.
 - `public/vendor/pacing-intelligence.mjs` -- **generated**, never hand-edited.
-  `npm run build` (`scripts/build-vendor.mjs`) copies `@red-cup-engineering/pacing-intelligence-services-section`'s `src/pacing-intelligence.mjs` here byte-for-byte from `node_modules`, so the browser runs the identical published code the paid gateway runs.
+  `npm run build` (`scripts/build-vendor.mjs`) copies `@red-cup-engineering/pacing-intelligence-engineering-services-section`'s `src/pacing-intelligence.mjs` here byte-for-byte from `node_modules`, so the browser runs the identical published code the paid gateway runs.
 - `src/worker.mjs`'s asset route and `public/js/view-model.mjs` are covered by `test/worker.test.mjs` and `test/view-model.test.mjs`.
 
 ## GUI framework evaluated, not used
@@ -55,7 +55,7 @@ If a later revision grows genuinely tile-shaped panels (a rearrangeable multi-me
 
 ## Observation record shape
 
-Every stored/exported/imported record is a `nutrition-biometric-observation-v1` record (`urn:red-cup-science:nutrition:biometric-observation:1.0.0`, owned by `nutrition-practice-computer`), the same shape `@red-cup-engineering/pacing-intelligence-services-section` and the pacing-intelligence offers of market.
+Every stored/exported/imported record is a `nutrition-biometric-observation-v1` record (`urn:red-cup-science:nutrition:biometric-observation:1.0.0`, owned by `nutrition-practice-computer`), the same shape `@red-cup-engineering/pacing-intelligence-engineering-services-section` and the pacing-intelligence offers of market.
 561.group both expect.
 This app writes four metric ids: `resting-heart-rate`, `hrv-rmssd`, `sleep-duration`, `activity-load`.
 Notes are kept separately (`day -> text`, not part of the biometric-observation array, since the schema has no free-text field) and travel alongside the observations in this app's own export envelope (`{ kind: "pacing-app-history-export", exportVersion, exportedAt, observationCount, observations, notes }`).
