@@ -20,10 +20,10 @@
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
-    "@red-cup-engineering/pacing-intelligence-services-section": "workspace:*"
+    "@red-cup-engineering/pacing-intelligence-services-section": "^0.2.2"
   },
   "devDependencies": {
-    "wrangler": "4.123.0"
+    "wrangler": "^4.123.0"
   },
   "engines": {
     "node": ">=24"
