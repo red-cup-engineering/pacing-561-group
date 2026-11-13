@@ -4,7 +4,7 @@
  * output (public/vendor/pacing-intelligence.mjs), and what the DOM
  * renders. No DOM, no storage, no network, no clock -- every input,
  * including "now", is caller-supplied, the same no-I/O discipline
- * @red-cup-engineering/pacing-intelligence-services-section itself holds.
+ * @red-cup-engineering/pacing-intelligence-engineering-services-section itself holds.
  * This module never edits, shortens, or paraphrases an evidence label --
  * every `message`/`evidenceStatus` string the compute layer returns is
  * passed through byte-for-byte.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Copies the published `@red-cup-engineering/pacing-intelligence-services-section`
+ * Copies the published `@red-cup-engineering/pacing-intelligence-engineering-services-section`
  * math module verbatim from node_modules into public/vendor/, so the
  * browser bundle imports byte-identical code to the one the paid gateway
  * runs -- never a hand-transcribed copy. Run before `wrangler dev` or
@@ -15,11 +15,11 @@ const require = createRequire(import.meta.url);
 const appRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const vendorDir = join(appRoot, "public", "vendor");
 
-const sourcePath = require.resolve("@red-cup-engineering/pacing-intelligence-services-section");
+const sourcePath = require.resolve("@red-cup-engineering/pacing-intelligence-engineering-services-section");
 const packageJsonPath = join(dirname(sourcePath), "..", "package.json");
 const { version } = JSON.parse(await readFile(packageJsonPath, "utf8"));
 
 await mkdir(vendorDir, { recursive: true });
 await copyFile(sourcePath, join(vendorDir, "pacing-intelligence.mjs"));
 
-console.log(`vendored @red-cup-engineering/pacing-intelligence-services-section@${version} -> public/vendor/pacing-intelligence.mjs`);
+console.log(`vendored @red-cup-engineering/pacing-intelligence-engineering-services-section@${version} -> public/vendor/pacing-intelligence.mjs`);
