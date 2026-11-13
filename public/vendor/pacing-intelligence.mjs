@@ -290,7 +290,7 @@ export function pemRiskFlags({ hrvDeviation, sleepDeviation, priorDayActivity } 
 /**
  * Composes the above over a caller-supplied set of biometric observations
  * shaped like `biometric-observation-v1` records (owned by
- * public-health-services-section, `urn:red-cup-science:health:biometric-observation:1.0.0`;
+ * health-services-section, `urn:red-cup-science:health:biometric-observation:1.0.0`;
  * the nutrition-domain profile `nutrition-biometric-observation-v1` is
  * accepted too, since only the fields below are read):
  * `{ metric, measuredAt|enteredAt, measurement: { value, unit, precision },
